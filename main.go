@@ -13,6 +13,8 @@ func main() {
 	}
 	log := logging.New(cfg)
 	log.Println("Beginning...")
+	log.Println("Config: ", cfg)
+
 	for {
 		log.Println(time.Now().UTC())
 		time.Sleep(2 * time.Second)

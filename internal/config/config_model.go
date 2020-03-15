@@ -9,6 +9,7 @@ type Config struct {
 type Service struct {
 	Name        string
 	Environment string
+	Env         string
 	//Logging  Logging
 	//Web      Web
 }

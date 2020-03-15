@@ -34,9 +34,10 @@ docker_push:
 
 docker_deploy: linux_build docker_build docker_login docker_push
 
+#Команды для k8s
 kube_deploy:
 	kubectl apply -f k8s/
 
-envtest:
-	echo $$APP_NAME/$$APP_NAME > export AAA; \
-	echo $$AAA
+kube_rol:
+	kubectl -n micro rollout restart deployment $$APP_NAME
+
