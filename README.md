@@ -1,2 +1,2 @@
-# go-template
-go-template
+# Service-kit
+Kit for building microservices
