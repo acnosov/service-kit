@@ -1,9 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"github.com/aibotsoft/service-kit/internal/config"
 	"github.com/aibotsoft/service-kit/internal/logging"
-	"time"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 func main() {
@@ -15,8 +19,18 @@ func main() {
 	log.Println("Beginning...")
 	log.Println("Config: ", cfg)
 
-	for {
-		log.Println(time.Now().UTC())
-		time.Sleep(2 * time.Second)
-	}
+	//for {
+	//	log.Println(time.Now().UTC())
+	//	time.Sleep(2 * time.Second)
+	//}
+
+	errs := make(chan error)
+	go func() {
+		c := make(chan os.Signal, 1)
+		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+		errs <- fmt.Errorf("%s", <-c)
+	}()
+
+	log.Fatal(http.ListenAndServe(":80", nil))
+	//http.ListenAndServe()
 }

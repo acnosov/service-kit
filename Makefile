@@ -2,7 +2,6 @@
 APP_NAME=service-kit
 DOCKER_USERNAME=aibotsoft
 CGO_ENABLED=0
-#GOOS=linux
 GOARCH=amd64
 
 linux_build:
@@ -15,11 +14,12 @@ run:
 	go run main.go
 
 test:
-	go test ./...
+	go test -v -cover ./...
 
 run_build:
 	dist/service
 
+#Команды для докера
 docker_build:
 	docker image build -f Dockerfile -t $$DOCKER_USERNAME/$$APP_NAME .
 
